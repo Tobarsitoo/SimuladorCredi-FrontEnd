@@ -39,7 +39,7 @@ export default function DefaultInputs() {
 
   const INTEREST_RATES = [
     { value: "0", label: "0%" },
-    { value: "1.8", label: "1.8%" }
+    { value: "1.8", label: "1.8%" } // Valor decimal correcto
   ];
 
   const handleSave = () => {
@@ -60,7 +60,7 @@ export default function DefaultInputs() {
             {/* Campo Fecha */}
             <div>
               <Label htmlFor="date">Fecha de disposición</Label>
-              <div className="relative">
+                <div className="relative">
                 <Input
                   type="date"
                   id="date"
@@ -70,7 +70,7 @@ export default function DefaultInputs() {
                   min={new Date().toISOString().split('T')[0]}
                 />
                 <CalenderIcon className="absolute text-gray-500 -translate-y-1/2 right-3 top-1/2 dark:text-gray-400" />
-              </div>
+                </div>
             </div>
 
             {/* Campo Línea de Crédito */}
@@ -88,7 +88,7 @@ export default function DefaultInputs() {
 
             {/* Campo Monto */}
             <div>
-              <Label htmlFor="amount" >Monto del Crédito</Label>
+              <Label htmlFor="amount">Monto del Crédito</Label>
               <Input
                 type="number"
                 id="amount"
@@ -96,8 +96,8 @@ export default function DefaultInputs() {
                 value={formData.amount}
                 onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
                 min="0"
-                step="100"
-                placeholder="Ej: 10,000,000"
+                step="any" // Permitir cualquier valor
+                placeholder="Ej: 10000000" // Formato correcto sin comas
               />
             </div>
 
