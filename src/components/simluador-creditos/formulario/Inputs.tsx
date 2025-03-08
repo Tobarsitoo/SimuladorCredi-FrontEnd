@@ -35,8 +35,9 @@ export default function DefaultInputs() {
     console.log("Selected value:", value);
   };
   return (
-    <div className="flex flex-row gap-4"> {/* Contenedor flexbox */}
-      <ComponentCard title="Simulador de créditos" className={`font-medium flex-1 ${isMenuOpen ? 'min-w-[50%]' : 'min-w-[20%]'}`}>
+    <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="col-span-1">
+      <ComponentCard title="Simulador de créditos" >
         <div className="space-y-6">
           <div>
             <Label htmlFor="datePicker">Fecha de disposición</Label>
@@ -96,10 +97,14 @@ export default function DefaultInputs() {
             </Button>
           </div>
         </div>
-      </ComponentCard>
-      <ComponentCard title="Amorizacion de créditos" className="font-medium">
-        <Table />
-      </ComponentCard>
-    </div>
+        </ComponentCard>
+        </div>
+        <div className="col-span-1">
+          <ComponentCard title="Amorizacion de créditos" className="font-medium">
+            <Table />
+          </ComponentCard>
+        </div>
+      </div>
   );
 }
+
