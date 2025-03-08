@@ -96,7 +96,7 @@ export default function DefaultInputs() {
                 value={formData.amount}
                 onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
                 min="0"
-                step="any" // Permitir cualquier valor
+                step={0} // Permitir cualquier valor
                 placeholder="Ej: 10000000" // Formato correcto sin comas
               />
             </div>
@@ -130,6 +130,20 @@ export default function DefaultInputs() {
                 />
                 <ChevronDownIcon className="absolute text-gray-500 -translate-y-1/2 pointer-events-none right-3 top-1/2 dark:text-gray-400" />
               </div>
+            </div>
+            {/* Campo Plazo */}
+            <div>
+              <Label htmlFor="plazo">Plazo (Número de cuotas)</Label>
+              <Input
+                type="number"
+                id="plazo"
+                name="plazo"
+                value={formData.plazo}
+                onChange={(e) => setFormData(prev => ({ ...prev, plazo: Number(e.target.value) }))}
+                min="1"
+                step="1"
+                placeholder="Ej: 12"
+              />
             </div>
 
             {/* Selector Tasa de Interés */}
