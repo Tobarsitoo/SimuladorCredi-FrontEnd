@@ -18,19 +18,16 @@ export default function SignInForm() {
   const formatFecha = (fecha: string): number => {
     return parseInt(fecha.replace(/-/g, ""), 10);
   };
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();    
     
     // Validación de campos
     if (!cedula || !fechaExp || !fechaNa) {
       Swal.fire("Error", "Todos los campos son obligatorios.", "error");
       return;
     }
-
-    console.log('Fecha Expedicion:', formatFecha(fechaExp));
-    console.log('Fecha Nacimiento:', formatFecha(fechaNa));
-    
   
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {

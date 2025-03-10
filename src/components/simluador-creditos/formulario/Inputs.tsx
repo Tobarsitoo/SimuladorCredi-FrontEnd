@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Label from "../Label";
 import Input from "../input/InputField";
@@ -50,12 +50,31 @@ export default function DefaultInputs() {
     plazo: 0,
   });
 
+  const [creditLines, setCreditLines] = useState<{ value: string; label: string }[]>([]);
+
+  // Cargar líneas de crédito desde la API
+  useEffect(() => {
+    async function fetchCreditLines() {
+      try {
+        const response = await fetch("http://localhost:5000/api/credit/lineas-credito");
+        const data = await response.json();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setCreditLines(data.map((line: any) => ({ value: line.linea, label: `${line.linea} - ${line.nombre}` })));
+      } catch (error) {
+        console.error("Error al obtener las líneas de crédito:", error);
+      }
+    }
+
+    fetchCreditLines();
+  }, []);
+
   const [tableData, setTableData] = useState<{
     monto: number;
     tasaInteres: number;
     plazo: number;
     fechaInicio: string;
   } | null>(null);
+
 
   const { closeModal } = useModal();
 
@@ -109,13 +128,12 @@ export default function DefaultInputs() {
             {/* Campo Línea de Crédito */}
             <div>
               <Label htmlFor="creditLine">Línea del Crédito</Label>
-              <Input
-                type="text"
-                id="creditLine"
+              <Select
                 name="creditLine"
+                options={creditLines}
                 value={formData.creditLine}
-                onChange={(e) => handleChange("creditLine", e.target.value)}
-                placeholder="Ej: Crédito personal"
+                onChange={(value: string) => setFormData({ ...formData, creditLine: value })}
+                placeholder="Seleccione una línea de crédito"
               />
             </div>
 
@@ -167,7 +185,7 @@ export default function DefaultInputs() {
                 min="1"
                 step="1"
                 placeholder={`Ej: ${calcularPlazoPorDefecto(formData.paymentMethod)}`}
-                explanation="Puede modificar el número de cuotas sugerido"
+                // explanation="Puede modificar el número de cuotas sugerido"
               />
             </div>
 
