@@ -41,6 +41,7 @@ const calcularPlazoPorDefecto = (paymentMethod: string): number => {
 };
 
 export default function DefaultInputs() {
+
   const [formData, setFormData] = useState<FormData>({
     date: "",
     creditLine: "",
@@ -175,7 +176,7 @@ export default function DefaultInputs() {
 
             {/* Campo Plazo Editable */}
             <div>
-              <Label htmlFor="plazo">Número de Cuotas</Label>
+              <Label>Número de Cuotas</Label>
               <Input
                 type="number"
                 id="plazo"
@@ -232,13 +233,15 @@ export default function DefaultInputs() {
           className="h-full flex flex-col font-medium"
         >
           {tableData && (
-            <Table
-              key={`${tableData.monto}-${tableData.plazo}`}
-              monto={tableData.monto}
-              tasaInteres={tableData.tasaInteres}
-              plazo={tableData.plazo}
-              fechaInicio={tableData.fechaInicio}
-            />
+            <div className="flex-1 min-h-[400px] overflow-x-auto">
+              <Table
+                key={`${tableData.monto}-${tableData.plazo}-${tableData.tasaInteres}`}
+                monto={tableData.monto}
+                tasaInteres={tableData.tasaInteres}
+                plazo={tableData.plazo}
+                fechaInicio={tableData.fechaInicio}
+              />
+            </div>
           )}
         </ComponentCard>
       </div>
