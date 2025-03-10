@@ -16,6 +16,7 @@ interface InputProps {
   error?: boolean;
   hint?: string; // Optional hint text
   value?: string | number;
+ explanation?: string
 }
 
 const Input: FC<InputProps> = ({
