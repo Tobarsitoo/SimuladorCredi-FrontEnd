@@ -20,9 +20,9 @@ interface FormData {
 
 const PAYMENT_OPTIONS = [
   { value: "Mensual", label: "Mensual" },
-  { value: "Trimestral", label: "Trimestral" },
-  { value: "Semestral", label: "Semestral" },
-  { value: "Único, al vencimiento", label: "Único, al vencimiento" },
+  // { value: "Trimestral", label: "Trimestral" },
+  // { value: "Semestral", label: "Semestral" },
+  // { value: "Único, al vencimiento", label: "Único, al vencimiento" },
 ];
 
 const INTEREST_RATES = [
